@@ -1,0 +1,37 @@
+{
+  "name": "node-express-docker-ts-starter",
+  "version": "1.0.0",
+  "description": "my personal starter kit for node apps in 2025",
+  "main": "app.js",
+  "scripts": {
+    "dev": "docker compose -f compose.dev.yaml up --build",
+    "build": "docker compose up --build",
+    "docker:down": "docker compose down --volumes",
+    "test": "echo \"No tests yet\""
+  },
+  "author": "Vasil Sarandev",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/css": "^0.9.0",
+    "@eslint/js": "^9.29.0",
+    "@eslint/json": "^0.12.0",
+    "@types/express": "^4.17.1",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/mongoose": "^5.11.96",
+    "@typescript-eslint/eslint-plugin": "^8.34.1",
+    "@typescript-eslint/parser": "^8.34.1",
+    "eslint": "^9.29.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.5.0",
+    "globals": "^16.2.0",
+    "prettier": "3.5.3",
+    "tsc-alias": "^1.8.16",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.0"
+  }
+}
