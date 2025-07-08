@@ -1,4 +1,4 @@
-# Minimal Node Express Starter Kit
+# Minimal Node Express Docker TS Starter Kit
 
 ## Introduction
 
