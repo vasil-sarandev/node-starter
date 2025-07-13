@@ -37,9 +37,9 @@ This project is containerized for both local and production environments with Do
 
 ### Running the app
 
-```
-npm install
-npm run dev
+```javascript
+docker compose -f compose.dev.yaml up --build
+// or just use `npm start`
 ```
 
 You can now access the app at `localhost:3000` in Postman or your browser.
