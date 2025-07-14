@@ -30,6 +30,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "@confluentinc/kafka-javascript": "^1.4.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.16.0"

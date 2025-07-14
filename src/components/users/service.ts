@@ -1,4 +1,4 @@
-import { AppError } from '@/middlewares/errorMiddleware';
+import { AppError } from '@/middlewares/error';
 import { IUserCreateObj, IUserRepository, userRepository } from './repository';
 
 class UsersService {

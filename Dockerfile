@@ -39,7 +39,7 @@ ENV NODE_ENV=production
 RUN npm ci --omit=dev
 # Copy only compiled output from the build stage
 COPY --from=build /usr/src/app/dist ./dist
-# Copy env file here
+# Copy env file
 COPY .env.prod .  
 CMD ["node", "--env-file=.env.prod", "./dist/app.js"] 
 

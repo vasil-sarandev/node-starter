@@ -1,7 +1,7 @@
 import { Types } from 'mongoose';
 import { IProduct } from './model';
 import { IProductRepository, productRepository } from './repository';
-import { AppError } from '@/middlewares/errorMiddleware';
+import { AppError } from '@/middlewares/error';
 
 type IProductCreateObj = Omit<IProduct, '_id'>;
 

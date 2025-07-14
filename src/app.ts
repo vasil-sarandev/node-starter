@@ -1,10 +1,10 @@
 import express from 'express';
-import { appRouter } from '@/components/appRouter';
-import { errorMiddleware } from '@/middlewares/errorMiddleware';
+import { appRouter } from '@/components/app-router';
+import { errorMiddleware } from '@/middlewares/error';
 import { loggerMiddleware } from '@/middlewares/logger';
-import { connectMongoose } from '@/lib/mongoose';
+import { setupApp } from './lib/setup-app';
 
-const createApp = () => {
+const createServerCallback = () => {
   const app = express();
   const port = parseInt(process.env.PORT as string);
 
@@ -22,4 +22,4 @@ const createApp = () => {
   });
 };
 
-connectMongoose(createApp);
+setupApp(createServerCallback);

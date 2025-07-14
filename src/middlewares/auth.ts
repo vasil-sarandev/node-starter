@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { AppError } from './errorMiddleware';
+import { AppError } from './error';
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
 
