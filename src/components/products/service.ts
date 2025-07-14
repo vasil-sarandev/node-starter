@@ -2,8 +2,16 @@ import { Types } from 'mongoose';
 import { IProduct } from './model';
 import { IProductRepository, productRepository } from './repository';
 import { AppError } from '@/middlewares/error';
+import { kafka, KAFKA_PRODUCTS_TOPIC } from '@/lib/kafka';
 
 type IProductCreateObj = Omit<IProduct, '_id'>;
+
+const sendProductCreatedMessage = (id: string, data: IProductCreateObj) => {
+  kafka.send({
+    topic: KAFKA_PRODUCTS_TOPIC,
+    messages: [{ key: id, value: data.name }],
+  });
+};
 
 class ProductsService {
   private productsRepository: IProductRepository;
@@ -30,10 +38,12 @@ class ProductsService {
   };
 
   createProduct = async (data: IProductCreateObj) => {
+    const productId = new Types.ObjectId().toString();
     const product = await this.productsRepository.createProduct({
       ...data,
-      _id: new Types.ObjectId().toString(),
+      _id: productId,
     });
+    sendProductCreatedMessage(productId, data);
     return product;
   };
 

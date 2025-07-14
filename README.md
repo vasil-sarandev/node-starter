@@ -7,6 +7,7 @@ This is my personal starter kit for Node-Express-Typescript-Docker Apps in 2025.
 - Node
 - Express
 - Docker
+- Kafka
 - ESLint
 - Prettier
 - Vitest
@@ -32,8 +33,8 @@ This project is containerized for both local and production environments with Do
 
 ### Development / Prod Containers Notes
 
-- **Development Container** - The Development Container includes a Mongo service that uses a volume to persist data and connects to it by default.
-- **Prod Container** - The Production Container doesn't include a Mongo service (naturally), so if you want to run the production build, make sure you have installed Mongo locally and have it running and exposed to the default port.
+- **Development Container** - The Development Container includes a Mongo and Kafka services that use volumes to persist data and connects to them by default.
+- **Prod Container** - The Production Container doesn't include a Mongo or a Kafka service (naturally), so if you want to run the production build, make sure you have installed Mongo & Kafka locally and have it running and exposed to the default port.
 
 ### Running the app
 
