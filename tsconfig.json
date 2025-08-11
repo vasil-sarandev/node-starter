@@ -1,12 +1,14 @@
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
   "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
     "target": "es2024",
     "module": "commonjs",
+    "skipLibCheck": true,
     "esModuleInterop": true,
-    "outDir": "dist",
-    "rootDir": "src",
     "strict": true,
     "paths": { "@/*": ["./src/*"] }
   },
-  "include": ["src/**/*", "eslint.config.js"]
+  "include": ["src/**/*", "eslint.config.js", "prettier.config.js"]
 }
