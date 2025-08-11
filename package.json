@@ -4,8 +4,8 @@
   "description": "my personal starter kit for node apps in 2025",
   "main": "app.js",
   "scripts": {
-    "dev": "docker compose -f compose.dev.yaml up --build",
-    "build": "docker compose up --build",
+    "dev": "docker compose -f docker-compose.dev.yaml up --build",
+    "build": "docker compose up -f docker-compose.yaml --build",
     "docker:down": "docker compose down --volumes",
     "test": "echo \"No tests yet\""
   },

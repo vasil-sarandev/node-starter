@@ -35,7 +35,6 @@ RUN npx tsc && npx tsc-alias
 
 # Production stage
 FROM base AS prod
-ENV NODE_ENV=production
 RUN npm ci --omit=dev
 # Copy only compiled output from the build stage
 COPY --from=build /usr/src/app/dist ./dist
