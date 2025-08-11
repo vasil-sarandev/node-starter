@@ -11,8 +11,8 @@ dist/
 **/yarn-error.log*
 
 # Env files
+.env
 .env.local
-.env.prod
 
 # OS or IDE-specific ignores
 *.log
