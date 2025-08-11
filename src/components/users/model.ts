@@ -1,12 +1,12 @@
 import { model, Schema } from 'mongoose';
 
-interface IUserBase {
+export interface IUserBase {
   _id: string;
   firstName: string;
   lastName: string;
 }
 
-interface IUserVirtuals {
+export interface IUserVirtuals {
   fullName: string;
 }
 
