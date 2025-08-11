@@ -1,8 +1,8 @@
 import express from 'express';
+import { setupApp } from './lib/setup-app';
 import { appRouter } from '@/components/app-router';
 import { errorMiddleware } from '@/middlewares/error';
 import { loggerMiddleware } from '@/middlewares/logger';
-import { setupApp } from './lib/setup-app';
 
 const createServerCallback = () => {
   const app = express();

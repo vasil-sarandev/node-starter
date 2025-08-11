@@ -1,5 +1,5 @@
-import { AppError } from '@/middlewares/error';
 import { IUserCreateObj, IUserRepository, userRepository } from './repository';
+import { AppError } from '@/middlewares/error';
 
 class UsersService {
   private repository: IUserRepository;
