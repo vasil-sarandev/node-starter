@@ -1,45 +1,26 @@
-# syntax=docker/dockerfile:1
-
-ARG NODE_VERSION=22.16.0
-
-################################################################################
-
-# --- Base image with shared setup ---
-
-# Use node image for base image for all stages.
-FROM node:${NODE_VERSION}-alpine as base
-
-# Set working directory for all build stages.
+FROM node:22.16.0-alpine AS base
+# set working directory
 WORKDIR /usr/src/app
 
-# Copy the package.json so deps can be installed.
-COPY package*.json ./
+# --------- PREPARE stage
+FROM base AS prepare
+# copy the files
+COPY . .
+# install the dependencies
+RUN npm install
 
-# --- End Base image with shared setup ---
-
-# --- Stages ---
-
-# Development stage
+# --------- DEVELOPMENT stage
 FROM base AS dev
-RUN npm install
-COPY . .
-CMD ["npx", "tsx", "watch", "--env-file=.env", "src/app.ts"] 
+# copy pruned app source and node_modules from the prepare stage
+COPY --from=prepare /usr/src/app ./
+# run in development mode with hot reload
+CMD ["npx", "tsx", "watch", "--env-file=.env.local", "./src/app.ts"]
 
-
-# Build stage
-FROM base as build
-RUN npm install
-COPY . .
+# --------- PRODUCTION stage
+FROM base AS prod
+# copy pruned app source and node_modules from the prepare stage
+COPY --from=prepare /usr/src/app ./
 # compile the code and rewire paths
 RUN npx tsc && npx tsc-alias
-
-# Production stage
-FROM base AS prod
-RUN npm ci --omit=dev
-# Copy only compiled output from the build stage
-COPY --from=build /usr/src/app/dist ./dist
-# Copy env file
-COPY .env.prod .  
-CMD ["node", "--env-file=.env.prod", "./dist/app.js"] 
-
-# --- End Stages ---
+# run the compiled app
+CMD [ "node", "--env-file=.env", "dist/app.js" ]

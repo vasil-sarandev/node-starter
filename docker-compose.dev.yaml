@@ -10,14 +10,16 @@ services:
     ports:
       - '3000:3000'
     depends_on:
-      - mongo
-      - kafka
+      kafka:
+          condition: service_healthy
+      mongo:
+          condition: service_started
   mongo:
-    image: mongo
+    image: mongo:8.0.12
     volumes:
       - mongo-data:/data/db   # Persist mongo data to named volume
   kafka:
-    image: confluentinc/cp-kafka:latest
+    image: confluentinc/cp-kafka:8.0.0
     ports:
       - "9092:9092"
     environment:
@@ -31,6 +33,11 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: "PLAINTEXT"
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       CLUSTER_ID: "test-cluster-id"
+    healthcheck:
+      test: ["CMD", "kafka-topics", "--bootstrap-server", "localhost:9092", "--list"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
 
 volumes:
   mongo-data:
